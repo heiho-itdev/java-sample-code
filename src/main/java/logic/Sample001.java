@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Sample001 {
+
     static final String DEF_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
 
     public static void main(String[] arg) {
@@ -24,15 +25,17 @@ public class Sample001 {
      * @return List<TestDTO>
      */
     private static List<TestDTO> getTestDTOList(int count) {
-
+        //pk生成
         long testId = 0L;
-
+        //count分オブジェクト生成
         return Stream.generate(() -> {
             TestDTO dto = new TestDTO(
                     testId + 1L,
                     "testName".concat(getNow()),
                     null);
+            //pk生成
             long testSubId = 0L;
+            //とりあえず3個オブジェクト生成
             dto.setTestList(
                     Stream.generate(() -> new TestSubDTO(
                             dto.getTestId(),
