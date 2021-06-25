@@ -21,5 +21,5 @@ public class TestDTO {
     /**
      * テストname
      */
-    private List<TestSubDTO> testList;
+    private List<TestSubDTO> testSubList;
 }

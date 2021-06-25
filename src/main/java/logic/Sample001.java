@@ -13,18 +13,16 @@ public class Sample001 {
 
     static final String DEF_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
 
-    public static void main(String[] arg) {
-        //いったん標準出力
-        System.out.println(getTestDTOList(5));
-        System.out.println(getTestDTOList(2));
-    }
-
     /**
      * 階層ありのオブジェクトぐるぐるポンって作って返すやつ
      * @param count 何個つくる？
      * @return List<TestDTO>
      */
-    private static List<TestDTO> getTestDTOList(int count) {
+    public List<TestDTO> getTestDTOList(int count) {
+
+        //0ならnull返す
+        if (count < 1) return null;
+
         //pk生成
         long testId = 0L;
         //count分オブジェクト生成
@@ -36,7 +34,7 @@ public class Sample001 {
             //pk生成
             long testSubId = 0L;
             //とりあえず3個オブジェクト生成
-            dto.setTestList(
+            dto.setTestSubList(
                     Stream.generate(() -> new TestSubDTO(
                             dto.getTestId(),
                             testSubId + 1L,
@@ -50,7 +48,7 @@ public class Sample001 {
      * 現在日時かえすやつ
      * @return  String(yyyy/MM/dd HH:mm:ss)
      */
-    private static String getNow() {
+    private String getNow() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern(DEF_TIME_FORMAT));
     }
 }
